@@ -10,11 +10,9 @@ import javax.persistence.*;
  */
 @Entity
 @NamedQueries( {
-    @NamedQuery(name = "PedidoReserva.findAll", query = "SELECT p FROM PedidoReserva p"),
-    @NamedQuery(name = "PedidoReserva.findById", query = "SELECT p FROM PedidoReserva p WHERE p.id = :id"),
-    @NamedQuery(name = "PedidoReserva.findByData", query = "SELECT p FROM PedidoReserva p WHERE p.Data = :Data"),
-    @NamedQuery(name = "PedidoReserva.findByLikeData", query = "SELECT p FROM PedidoReserva p WHERE p.Data like :Data"),
-    @NamedQuery(name = "PedidoReserva.findByCountLikeData", query = "SELECT COUNT(p) FROM PedidoReserva p WHERE p.Data like :Data")
+    @NamedQuery(name = "PedidoReserva.findAll", query = "SELECT pr FROM PedidoReserva pr"),
+    @NamedQuery(name = "PedidoReserva.findById", query = "SELECT pr FROM PedidoReserva pr WHERE pr.id = :id"),
+    
 })
 
 public class PedidoReserva {
@@ -29,7 +27,7 @@ public class PedidoReserva {
 	private Status status;
 	
 	/* private Funcionario responsavel */ // Outra abstração
-	private List<Recurso> lista_recurso;
+	private List<RecursoNTIC> listaRecurso;
 
 
 	public PedidoReserva() {
@@ -44,11 +42,11 @@ public class PedidoReserva {
 		this.id = idPedidoReserva;
 	}   
 	public Date getData() {
-		return this.Data;
+		return this.data;
 	}
 
-	public void setData(Date Data) {
-		this.Data = Data;
+	public void setData(Date data) {
+		this.data = data;
 	}
 	public Status getStatus() {
 		return status;
@@ -57,19 +55,19 @@ public class PedidoReserva {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-
-	public List<Recurso> getLista_recurso() {
-		return lista_recurso;
+	
+	public List<RecursoNTIC> getLista_recurso() {
+		return listaRecurso;
 	}
-	public void setLista_recurso(List<Recurso> lista_recurso) {
-		this.lista_recurso = lista_recurso;
+	public void setLista_recurso(List<RecursoNTIC> lista_recurso) {
+		this.listaRecurso = lista_recurso;
 	}	
 	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Data == null) ? 0 : Data.hashCode());
+		result = prime * result + ((data == null) ? 0 : data.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		return result;
 	}
@@ -82,10 +80,10 @@ public class PedidoReserva {
 		if (getClass() != obj.getClass())
 			return false;
 		PedidoReserva other = (PedidoReserva) obj;
-		if (Data == null) {
-			if (other.Data != null)
+		if (data == null) {
+			if (other.data != null)
 				return false;
-		} else if (!Data.equals(other.Data))
+		} else if (!data.equals(other.data))
 			return false;
 		if (id != other.id)
 			return false;
@@ -94,6 +92,6 @@ public class PedidoReserva {
 	@Override
 	public String toString() {
 		return "PedidoReserva [id=" + id + ", data=" + data
-				+ ", lista_recurso=" + lista_recurso + "]";
+				+ ", lista_recurso=" + listaRecurso + "]";
 	}   
 }
