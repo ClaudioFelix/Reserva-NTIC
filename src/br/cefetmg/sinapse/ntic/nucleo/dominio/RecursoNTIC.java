@@ -2,46 +2,43 @@ package br.cefetmg.sinapse.ntic.nucleo.dominio;
 
 import javax.persistence.*;
 
+import br.cefetmg.sinapse.nucleo.dominio.UnidadeOrganizacional;
+
 /**
  * Entity implementation class for Entity: Recurso
- *
+ * 
  */
 @Entity
-@NamedQueries( {
-    @NamedQuery(name = "Recurso.findAll", query = "SELECT p FROM Recurso p"),
-    @NamedQuery(name = "Recurso.findById", query = "SELECT p FROM Recurso p WHERE p.id = :id"),
-    @NamedQuery(name = "Recurso.findByNome", query = "SELECT p FROM Recurso p WHERE p.nome = :nome"),
-    @NamedQuery(name = "Recurso.findByLikeNome", query = "SELECT p FROM Recurso p WHERE upper(p.nome) like :nome"),
-    @NamedQuery(name = "Recurso.findByCountLikeNome", query = "SELECT COUNT(p) FROM Recurso p WHERE upper(p.nome) like :nome"),
-    @NamedQuery(name = "Recurso.findByLocal", query = "SELECT p FROM Recurso p WHERE p.local = :local"),
-    @NamedQuery(name = "Recurso.findByTipo", query = "SELECT p FROM Recurso p WHERE p.tipo = :tipo")
-})
-
-public class Recurso{
-
+@NamedQueries({
+		@NamedQuery(name = "Recurso.findAll", query = "SELECT p FROM RecursoNTIC p"),
+		@NamedQuery(name = "Recurso.findById", query = "SELECT p FROM RecursoNTIC p WHERE p.id = :id"),
+		@NamedQuery(name = "Recurso.findByNome", query = "SELECT p FROM RecursoNTIC p WHERE p.nome = :nome"),
+		@NamedQuery(name = "Recurso.findByLikeNome", query = "SELECT p FROM RecursoNTIC p WHERE upper(p.nome) like :nome"),
+		@NamedQuery(name = "Recurso.findByCountLikeNome", query = "SELECT COUNT(p) FROM RecursoNTIC p WHERE upper(p.nome) like :nome"),
+		@NamedQuery(name = "Recurso.findByLocal", query = "SELECT p FROM RecursoNTIC p WHERE p.local = :local"), })
+public class RecursoNTIC {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id = 0;
-	
+
 	@Lob
 	private String descricao = "";
-	
+
 	private int funcional;
 	private String nome = "";
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_tipo")
 	private TipoRecurso tipo;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_unidade_organizacional")
 	private UnidadeOrganizacional local;
-	
-	
-	public Recurso() {
+
+	public RecursoNTIC() {
 		super();
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -116,7 +113,7 @@ public class Recurso{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Recurso other = (Recurso) obj;
+		RecursoNTIC other = (RecursoNTIC) obj;
 		if (descricao == null) {
 			if (other.descricao != null)
 				return false;
@@ -132,5 +129,5 @@ public class Recurso{
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
-	}   
+	}
 }
