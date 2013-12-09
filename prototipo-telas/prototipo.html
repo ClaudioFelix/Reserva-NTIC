@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>SIRRE - Pedido de Reserva</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <!-- Bootstrap -->
+	    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">		
+		<script type="text/javascript">
+			// Configura os eventos assim que a página carrega, para que seja possíevl acesso
+			// aos elementos necessários
+			window.onload = setarEventos;
+
+			// Define um identificador de resursos, iniciado pelo id 1
+			window.recursos = 1;
+
+			function setarEventos(){
+				var recurso    = document.getElementById("recurso"),
+					detRecurso = document.getElementById("detalhesRecurso");
+
+				// Faz com que o checkbox "recurso" seja automaticamente não-selecionado
+				recurso.checked = false;
+
+				// Exibe a área de recursos adicionais assim que o checkbox "recurso"
+				// é selecionado
+				recurso.onclick = function(){
+					if(recurso.checked){
+						detRecurso.style.display = "block";
+					}else{
+						detRecurso.style.display = "none";
+					}
+				};
+			};
+
+			// Função que adiciona um novo recurso ao pedido
+			function addRecurso(){
+				var detRecurso = document.getElementById("detalhesRecurso"),
+				    novoRecurso = document.createElement("div");
+
+				// Aumenta o identificador de recurso
+				window.recursos++;
+				novoRecurso.id = "recurso" + window.recursos;
+
+				// Cria o elemento que permite a inserção de um novo recurso
+				novoRecurso.innerHTML = "<label for=\"opcRecurso" + window.recursos + "\">Escolha um recurso *</label>				<select id=\"opcRecurso" + window.recursos + "\" name=\"opcRecurso" + window.recursos + "\">					<option value=\"projetor\">Projetor</option> 				<option value=\"notebook\">Notebook</option>					<option value=\"programa\">Programa</option>					<option value=\"outro\">   Outro</option>				</select><br /><button type=\"button\" id=\"rmRecurso\" onclick=\"removeRecurso(" + recursos + ")\">Remover Recurso</button><br /><br />";
+
+				// Insere o elemento logo antes da descrição dos recursos
+				detRecurso.insertBefore(novoRecurso, document.getElementById("labelDescRecurso"));
+			}
+
+			// Função que remove um recurso existente
+			function removeRecurso(numRecurso){
+				var excluir = document.getElementById("recurso" + numRecurso),
+					paiExcl = excluir.parentNode;
+
+				paiExcl.removeChild(excluir);
+			}
+		</script>
+	</head>
+	<body class="container">
+		<!-- Topo da página, contendo o título e a barra do MEC -->
+		<header id="topo" class="page-header">
+			<img id="MEC" src="barraMEC.png" class="img-responsive">
+			<img id="header"src="cabecalho.png" class="img-responsive">
+		</header>
+		<!-- Conteúdo da página propriamente dito -->
+		<div id="conteudo" class="jumbotron">
+			<section id="area_pedido">
+				<!-- Formulário que recebe os dados da reserva -->
+				<form action="efetua_reserva.html" method="get" role="form" class="form-horizontal">
+					<h3>Requisi&ccedil;&atilde;o de pedido de reserva</h3>
+
+					<div id="formulario_pedido">
+						<div class="form-group">
+							<label for="nome_professor" class="col-sm-3 control-label">Nome do professor</label>
+							<div class="col-sm-8">
+								<input type="text" id="nome_professor" name="nome_professor" placeholder="Nome do professor" class="form-control" required/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="disciplina" class="col-sm-3 control-label">Disciplina</label>
+							<div class="col-sm-8">
+								<input type="text" id="disciplina" name="disciplina" placeholder="Disciplina" class="form-control" required/>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="recurso">Necessita de recurso adicional? (projetor, notebook, programas, etc)?</label>
+							<input type="checkbox" id="recurso" name="recurso" />
+						</div>
+
+						<div id="detalhesRecurso" style="display: none">
+							<div id="recurso1">
+								<label for="opcRecurso1">Escolha um recurso *</label>
+								<select id="opcRecurso1" name="opcRecurso1">
+									<option value="projetor">Projetor</option>
+									<option value="notebook">Notebook</option>
+									<option value="programa">Programa</option>
+									<option value="outro">   Outro</option>
+								</select>
+							</div>
+							<label id="labelDescRecurso" for="descRecurso">Detalhes adicionais</label>
+							<textarea id="descRecurso" name="descRecurso" cols="85" rows="4"></textarea>
+							<button type="button" id="insercaoRecurso" onclick="addRecurso()">Adicionar recurso</button>
+						</div>
+						<hr />
+						<p class="detalhesReserva">Data da reserva: 20/09/2013 - Sexta-feira</p>
+						<p class="detalhesReserva">Hor&aacute;rio da reserva: 10:40 - 12:20</p>
+						<p class="detalhesReserva">Sala: DGO - Sala A</p>
+						<input type="submit" value="Reservar" />
+					</div>	
+				</form>
+			</section>
+		</div>
+	</body>
+</html>
