@@ -80,5 +80,6 @@ CREATE TABLE PedidoReserva(
 	Constraint pk_PedidoReserva Primary Key(idRecurso, idUsuario),
 	Constraint fk_PedidoReserva_Recurso Foreign Key(idRecurso) references Recurso(idRecurso),
 	Constraint fk_PedidoReserva_Usuario Foreign Key(idUsuario) references Usuario(idUsuario),
-	Constraint fk_PedidoReserva_UsuarioUtilizador Foreign Key(idUtilizador) references Usuario(idUsuario)
+	Constraint fk_PedidoReserva_UsuarioUtilizador Foreign Key(idUtilizador) references Usuario(idUsuario),
+	Constraint fk_PedidoReserva_StatusPedReserva Foreign Key(codStatPedReserva) references StatusPedReserva(codStatPedReserva)
 );
