@@ -4,8 +4,8 @@
 -- StatusPedReserva: @codStatPedReserva, nomeStatPedReserva
 -- Usuario: @idUsuario, login, senha, email, telContato, codTipoUsuario(FK)
 -- Recurso: @idRecurso, nomeRecurso, descRecurso, codStatRecurso(FK), codTipoRecurso(FK)
--- PedidoReserva: @idPedidoReserva, idRecurso(FK), idUsuario(FK), idUtilizador(FK), codStatPedReserva(FK),
-			   -- datPedReserva, horarioUtilRecurso, tempoUtilRecurso
+-- PedidoReserva: @idRecurso(FK), @idUsuario(FK), @datPedReserva, idUtilizador(FK), codStatPedReserva(FK),
+			   -- horarioUtilRecurso, tempoUtilRecurso
 
 -- TipoRecurso: @codTipoRecurso, nomeTipoRecurso
 CREATE TABLE TipoRecurso(
@@ -66,10 +66,9 @@ CREATE TABLE Recurso(
 	Constraint fk_Recurso_TipoRecurso Foreign Key(codTipoRecurso) references TipoRecurso(codTipoRecurso)
 );
 
--- PedidoReserva: @idPedidoReserva, idRecurso(FK), idUsuario(FK), idUtilizador(FK), codStatPedReserva(FK),
-			   -- datPedReserva, horarioUtilRecurso, tempoUtilRecurso
+-- PedidoReserva: @idRecurso(FK), @idUsuario(FK), @datPedReserva, idUtilizador(FK), codStatPedReserva(FK),
+			   -- horarioUtilRecurso, tempoUtilRecurso
 CREATE TABLE PedidoReserva(
-	idPedidoReserva int not null,
 	idRecurso int not null,
 	idUsuario int not null,
 	idUtilizador int not null,
@@ -78,7 +77,7 @@ CREATE TABLE PedidoReserva(
 	horarioUtilRecurso date not null,
 	tempoUtilRecurso int not null,
 
-	Constraint pk_PedidoReserva Primary Key(idPedidoReserva),
+	Constraint pk_PedidoReserva Primary Key(idRecurso, idUsuario, datPedReserva),
 	Constraint fk_PedidoReserva_Recurso Foreign Key(idRecurso) references Recurso(idRecurso),
 	Constraint fk_PedidoReserva_Usuario Foreign Key(idUsuario) references Usuario(idUsuario),
 	Constraint fk_PedidoReserva_UsuarioUtilizador Foreign Key(idUtilizador) references Usuario(idUsuario),
