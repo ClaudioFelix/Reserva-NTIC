@@ -132,7 +132,8 @@ public class PedidoReserva implements Serializable {
 				+ ", tempoUtilRecurso=" + tempoUtilRecurso + "]";
 	}
 
-
+	
+	/* Pode existir algo de errado na implementação desses metodos gerados */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
