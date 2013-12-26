@@ -7,6 +7,7 @@ import javax.persistence.*;
  *
  */
 @Entity
+@Table(name="TipoRecurso")
 @NamedQueries({
     @NamedQuery(name = "TipoRecurso.findAll", query = "SELECT tr FROM TipoRecurso tr"),
     @NamedQuery(name = "TipoRecurso.findById", query = "SELECT tr FROM TipoRecurso tr WHERE tr.codTipoRecurso = :id"),

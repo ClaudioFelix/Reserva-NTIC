@@ -4,5 +4,8 @@
 		<class>br.cefetmg.sinapse.ntic.nucleo.dominio.RecursoNTIC</class>
 		<class>br.cefetmg.sinapse.ntic.nucleo.dominio.StatusRecurso</class>
 		<class>br.cefetmg.sinapse.ntic.nucleo.dominio.TipoRecurso</class>
+		<class>br.cefetmg.sinapse.ntic.nucleo.dominio.PedidoReserva</class>
+		<class>br.cefetmg.sinapse.ntic.nucleo.dominio.StatusPedReserva</class>
+		<class>br.cefetmg.sinapse.ntic.nucleo.dominio.Usuario</class>
 	</persistence-unit>
 </persistence>

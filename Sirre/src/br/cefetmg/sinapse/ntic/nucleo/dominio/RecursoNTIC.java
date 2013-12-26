@@ -7,6 +7,7 @@ import javax.persistence.*;
  *
  */
 @Entity
+@Table(name="RecursoNTIC")
 @NamedQueries({
     @NamedQuery(name = "Recurso.findAll", query = "SELECT r FROM RecursoNTIC r"),
     @NamedQuery(name = "Recurso.findById", query = "SELECT r FROM RecursoNTIC r WHERE r.idRecursoNTIC = :id"),
