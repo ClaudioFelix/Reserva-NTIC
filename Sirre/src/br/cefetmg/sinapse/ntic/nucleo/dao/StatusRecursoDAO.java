@@ -34,7 +34,7 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
 
         // auditoria
         IAuditoriaDAO auditoriaDao = new AuditoriaDAO();
-        auditoriaDao.gravarAuditoria(pais, AuditoriaTipoTransacao.INCLUSAO,
+        auditoriaDao.gravarAuditoria(status, AuditoriaTipoTransacao.INCLUSAO,
                 entityManager);
     }
 
@@ -44,7 +44,7 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
 
         // auditoria
         IAuditoriaDAO auditoriaDao = new AuditoriaDAO();
-        auditoriaDao.gravarAuditoria(pais, AuditoriaTipoTransacao.EDICAO,
+        auditoriaDao.gravarAuditoria(status, AuditoriaTipoTransacao.EDICAO,
                 entityManager);
 
         return status;
@@ -56,7 +56,7 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
 
         // auditoria
         IAuditoriaDAO auditoriaDao = new AuditoriaDAO();
-        auditoriaDao.gravarAuditoria(pais, AuditoriaTipoTransacao.REMOCAO,
+        auditoriaDao.gravarAuditoria(status, AuditoriaTipoTransacao.REMOCAO,
                 entityManager);
 
     }
