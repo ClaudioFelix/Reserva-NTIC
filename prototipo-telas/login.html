@@ -1,43 +1,75 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>SIRRE - Login</title>
-	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <!-- Bootstrap -->
-	    <link href="./static/dist/css/bootstrap.min.css" rel="stylesheet">
-	    <style>
-	    #area_login{
-	    	padding-right: 200px;
-	    	padding-left: 200px;
-	    }
-	    </style>	
-	</head>
-	<body class="container">
-		<!-- Topo da página, contendo o título e a barra do MEC -->
-		<header id="topo" class="page-header">
-			<img id="MEC" src="static/images/barraMEC.png" class="img-responsive">
-			<img id="header"src="static/images/cabecalho.png" class="img-responsive">
-		</header>
-		<!-- Conteúdo da página propriamente dito -->
-		<div id="conteudo" class="jumbotron">
-			<section id="area_login">
-				<form id="login" action="" method="post" class="form-signin" role="form">
-					<div class="form-group">
-						<label for="idLogin">Login:</label>
-						<input type="text" class="form-control" name="login" id="idLogin" placeholder="Login" required autofocus>
-					</div>
-					<div class="form-group">
-						<label for="idPass">Senha:</label>
-						<input type="password" class="form-control" name="password" id="idPass" placeholder="Senha" required>
-					</div>					
-					<input type="submit" class="btn btn-default" value="Enviar" />
-				</form>
-			</section>
-		</div>
+  <head>
+    <title>SIRRE - Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="./static/dist/css/bootstrap.min.css" rel="stylesheet">
 
-	    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-	    <script src="https://code.jquery.com/jquery.js"></script>
-	    <!-- Include all compiled plugins (below), or include individual files as needed -->
-	    <script src="./static/dist/js/bootstrap.min.js"></script>		
-	</body>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link href="./static/main.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="barra-brasil-v3" class="img-responsive">
+      <span>
+        <div class="imagemGov">
+          <a href="http://www.brasil.gov.br" target="_blank" class="brasilgov" title="Portal Brasil"></a>
+          <a href="http://www.acessoainformacao.gov.br/sistema/" target="_blank" class="brasilgovAI" title="Acesso &agrave; Informa&ccedil;&atilde;o"></a>
+        </div>
+      </span>
+    </div>
+  	<div id="topo" class="container">
+	    <div class="navbar navbar-default" role="navigation">
+		    <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		         </button>
+		         
+		        <div class="navbar-brand">
+                  <a href="home.html"><img src="./static/images/logos/logo1.png" id="logotipo"></a>
+                  SIRRE
+                </div>
+	        </div>
+
+	        <div class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li><a href="home.html#conteudo">About</a></li>
+                <li><a href="https://github.com/leafarTHENERD/Reserva-NTIC">Documenta&ccedil;&atilde;o</a></li>
+	          </ul>
+	        </div>
+	    </div>
+    </div>
+    <div id="conteudo" class="container">
+		<div class="jumbotron">
+          
+          <div id="area_login">            
+            <form id="login" action="" method="post" class="form-signin" role="form">
+              <div class="form-group">
+                  <label for="idLogin">Login:</label>
+                  <input type="text" class="form-control" name="login" id="idLogin" placeholder="Login" required autofocus>
+              </div>
+              <div class="form-group">
+                  <label for="idPass">Senha:</label>
+                  <input type="password" class="form-control" name="password" id="idPass" placeholder="Senha" required>
+              </div>
+              <input type="submit" class="btn btn-default" value="Enviar"/>
+            </form>
+
+          </div>
+		</div>
+    </div>
+ 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="static/dist/js/bootstrap.min.js"></script>
+  </body>
 </html>

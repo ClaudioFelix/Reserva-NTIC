@@ -12,21 +12,17 @@
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <style>
-    	#logotipo{
-    		vertical-align: middle;
-    		width: 20px;
-    	}
-    	.page-header{
-    		text-align: center;
-    	}
-    	#topo{
-    		padding-top: 10px;
-    	}
-
-    </style>
+    <link href="./static/main.css" rel="stylesheet">
   </head>
   <body>
+    <div id="barra-brasil-v3" class="img-responsive">
+      <span>
+        <div class="imagemGov">
+          <a href="http://www.brasil.gov.br" target="_blank" class="brasilgov" title="Portal Brasil"></a>
+          <a href="http://www.acessoainformacao.gov.br/sistema/" target="_blank" class="brasilgovAI" title="Acesso &agrave; Informa&ccedil;&atilde;o"></a>
+        </div>
+      </span>
+    </div>
   	<div id="topo" class="container">
 	    <div class="navbar navbar-default" role="navigation">
 		    <div class="navbar-header">
@@ -36,34 +32,36 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		         </button>
-		         <a class="navbar-brand" href="#">
-		         	<img src="static/images/logos/logo1.png" id="logotipo">
-		         </a>
-		        <div class="navbar-brand">SIRRE</div>
+		         
+		        <div class="navbar-brand">
+                  <a href="home.html"><img src="./static/images/logos/logo1.png" id="logotipo"></a>
+                  SIRRE
+                </div>
 	        </div>
 
 	        <div class="navbar-collapse collapse">
 	          <ul class="nav navbar-nav">
 	            <li><a href="./login.html">Login</a></li>
 	            <li><a href="#conteudo">About</a></li>
+                <li><a href="https://github.com/leafarTHENERD/Reserva-NTIC">Documenta&ccedil;&atilde;o</a></li>
 	          </ul>
 	        </div>
 	    </div>
-	    <div id="conteudo">
-	    	<div class="jumbotron">
-	    		<h1>SIRRE</h1>
-	    		<p>
-	    		&Eacute; um SIstema de Reserva de REcurso que surge da necessidade de um N&uacute;cleo de Tecnologia da Informa&ccedil;&atilde;o e Comunica&ccedil;&atilde;o de
-	    		automatizar o processo de reserva de recursos audiovisuais.
+    </div>
+    <div id="conteudo" class="container">
+        <div class="jumbotron">
+            <h1>SIRRE</h1>
+            <p>
+            &Eacute; um SIstema de Reserva de REcurso que surge da necessidade de um N&uacute;cleo de Tecnologia da Informa&ccedil;&atilde;o e Comunica&ccedil;&atilde;o de
+            automatizar o processo de reserva de recursos audiovisuais.
 
-	    		</p>
-	    	</div>
-
-	    </div>
-	 </div>
+            </p>
+        </div>
+    </div>
+ 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="./dist/js/bootstrap.min.js"></script>
+    <script src="static/dist/js/bootstrap.min.js"></script>
   </body>
 </html>
