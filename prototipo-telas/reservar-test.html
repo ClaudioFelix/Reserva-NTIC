@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SIRRE - Pedido de Reserva</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="./static/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <link href="./static/main.css" rel="stylesheet">
+  </head>
+  <body>
+  	<div id="topo" class="container">
+	    <div class="navbar navbar-default" role="navigation">
+		    <div class="navbar-header">
+		        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+		            <span class="sr-only">Toggle navigation</span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		            <span class="icon-bar"></span>
+		         </button>
+		         
+		        <div class="navbar-brand">
+                  <a href="home.html"><img src="./static/images/logos/logo1.png" id="logotipo"></a>
+                  SIRRE
+                </div>
+	        </div>
+
+	        <div class="navbar-collapse collapse">
+	          <ul class="nav navbar-nav">
+	            <li><a href="#conteudo">About</a></li>
+                <li><a href="https://github.com/leafarTHENERD/Reserva-NTIC">Documenta&ccedil;&atilde;o</a></li>
+                <li id="nomeUsuario"><a href="profile.html">Nome Teste</a></li>
+                <li><a href="home.html">Sair</a></li>
+	          </ul>
+	        </div>
+	    </div>      
+    </div>
+    <div id="conteudo" class="container">
+        <div id="reserva-carousel" class="carousel slide" data-ride="carousel" data-interval=0>
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#reserva-carousel" data-slide-to="0" class="active"></li>
+                <li data-target="#reserva-carousel" data-slide-to="1"></li>
+                <li data-target="#reserva-carousel" data-slide-to="2"></li>
+            </ol>
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <div class="container">
+                        
+                        <div class="carousel-caption">
+                            <h1>Requisi&ccedil;&atilde;o de Pedido de Reserva</h1>
+                        <div id="formulario_pedido">
+                            <div class="form-group">
+                                <label for="nome_professor" class="col-sm-3 control-label">Nome do professor</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="nome_professor" name="nome_professor" placeholder="Nome do professor" class="form-control" required/>
+                                </div>
+                            </div>
+    
+                            <div class="form-group">
+                                <label for="disciplina" class="col-sm-3 control-label">Disciplina</label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="disciplina" name="disciplina" placeholder="Disciplina" class="form-control" required/>
+                                </div>
+                            </div>                         
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Controls -->
+            <a class="left carousel-control" href="#reserva-carousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+            <a class="right carousel-control" href="#reserva-carousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+            </a>            
+        </div>
+    </div>
+ 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="static/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
