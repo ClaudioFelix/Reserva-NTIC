@@ -1,0 +1,83 @@
+#barra-brasil-v3 {
+    background: none repeat scroll 0pt 0pt rgb(0, 80, 15);
+    clear: both;
+    height: 28px;
+    min-width: 992px;
+    overflow: hidden;
+    position: relative;
+}
+
+#barra-brasil-v3 span {
+    background: url(./images/barra-brasil-v3-bgx.gif) repeat-x scroll 0 bottom transparent;
+    display: block;
+    height: 28px;
+    width: 50%;
+}
+
+#barra-brasil-v3 span .imagemGov {
+    background: url(./images/barra-brasil-v3-verde.gif) no-repeat scroll right top transparent;
+    height: 24px;
+    left: 50%;
+    margin-left: -490px;
+    position: absolute;
+    top: 4px;
+    width: 992px;
+}
+
+#barra-brasil-v3 span .brasilgov {
+    border: 0 none !important;
+    display: block;
+    float: right;
+    height: 24px;
+    width: 100px;
+}
+
+#barra-brasil-v3 span .brasilgovAI {
+    background: url(./images/ai.png) no-repeat;
+    width: 161px;
+    height: 24px;
+    float: right;
+    display: block;
+    border: 0!important;
+    margin: 0 30px 0 0;
+}
+
+#topo {
+    padding-top: 15px;
+}
+#topo img {
+    width:18px;
+    height:18px;
+}
+
+.form-signin {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+/* CUSTOMIZE THE CAROUSEL
+-------------------------------------------------- */
+
+/* Carousel base class */
+.carousel {
+  height: 500px;
+  margin-bottom: 60px;
+}
+/* Since positioning the image, we need to help out the caption */
+.carousel-caption {
+  z-index: 10;
+}
+
+/* Declare heights because of positioning of img element */
+.carousel .item {
+  height: 500px;
+  background-color: #777;
+}
+.carousel-inner > .item > img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 500px;
+}
