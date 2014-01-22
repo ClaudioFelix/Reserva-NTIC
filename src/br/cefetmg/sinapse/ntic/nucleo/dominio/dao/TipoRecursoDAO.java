@@ -122,7 +122,7 @@ public class TipoRecursoDAO implements ITipoRecursoDAO {
 
         // numRows corresponde ao numero de registros por pagina, vem do MB
         // pagina corresponde a pagina corrente que o usuário está
-        List lista = query.setFirstResult(
+        List<TipoRecurso> lista = query.setFirstResult(
                 LazyList.getIndicePrimeiroRegistro(pagina, rows))
                 .setMaxResults(rows).getResultList();
 
