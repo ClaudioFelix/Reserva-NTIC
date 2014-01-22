@@ -45,9 +45,12 @@
 #topo {
     padding-top: 15px;
 }
-#topo img {
-    width:18px;
-    height:18px;
+#logotipo{
+    vertical-align: middle;
+    width: 20px;
+}
+.page-header{
+    text-align: center;
 }
 
 .form-signin {
