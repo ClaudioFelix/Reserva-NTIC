@@ -8,10 +8,16 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="StatusPedReserva")
+@NamedQueries({
+    @NamedQuery(name = "StatusPedReserva.findAll", query = "SELECT sp FROM StatusPedReserva sp"),
+    @NamedQuery(name = "StatusPedReserva.findById", query = "SELECT sp FROM StatusPedReserva sp WHERE sp.codStatPedReserva = :id"),
+    @NamedQuery(name = "StatusPedReserva.findByLikeNome", query = "SELECT sp FROM StatusPedReserva sp WHERE upper(sp.nomeStatPedReserva) like :nome"),
+})
+
 public class StatusPedReserva {
 	
-	@Id
-	private int codStatPedReserva;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int codStatPedReserva = 0;
 	
 	@Lob
 	private String nomeStatPedReserva = "";

@@ -11,7 +11,6 @@ import br.cefetmg.sinapse.aaa.nucleo.dao.IAuditoriaDAO;
 import br.cefetmg.sinapse.aaa.nucleo.dao.jpa.AuditoriaDAO;
 import br.cefetmg.sinapse.aaa.nucleo.dominio.AuditoriaTipoTransacao;
 
-
 import br.cefetmg.sinapse.ntic.nucleo.dominio.dao.ITipoRecursoDAO;
 import br.cefetmg.sinapse.ntic.nucleo.dominio.TipoRecurso;
 

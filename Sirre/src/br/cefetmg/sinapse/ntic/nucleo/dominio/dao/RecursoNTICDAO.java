@@ -11,8 +11,8 @@ import br.cefetmg.sinapse.aaa.nucleo.dao.IAuditoriaDAO;
 import br.cefetmg.sinapse.aaa.nucleo.dao.jpa.AuditoriaDAO;
 import br.cefetmg.sinapse.aaa.nucleo.dominio.AuditoriaTipoTransacao;
 
-import br.cefetmg.sinapse.ntic.nucleo.dominio.dao.IStatusRecursoDAO;
-import br.cefetmg.sinapse.ntic.nucleo.dominio.StatusRecurso;
+import br.cefetmg.sinapse.ntic.nucleo.dominio.dao.IRecursoNTICDAO;
+import br.cefetmg.sinapse.ntic.nucleo.dominio.RecursoNTIC;
 
 import br.cefetmg.sinapse.nucleo.exception.NegocioException;
 import br.cefetmg.sinapse.nucleo.util.LazyList;
@@ -20,89 +20,93 @@ import br.cefetmg.sinapse.nucleo.util.LazyList;
 
 
 @Stateless
-public class StatusRecursoDAO implements IStatusRecursoDAO {
+public class RecursoNTICDAO implements IRecursoNTICDAO {
 
-    private static final String LISTAR_STATUS_RECURSO = "StatusRecurso.findAll";
-    private static final String CONSULTAR_ID = "StatusRecurso.findById";
-    private static final String CONSULTAR_NOME = "StatusRecurso.findByLikeNome";
-    
+    private static final String LISTAR_RECURSO = "RecursoNTIC.findAll";
+    private static final String CONSULTAR_ID = "RecursoNTIC.findById";
+    private static final String CONSULTAR_NOME = "RecursoNTIC.findByNome";
+    private static final String CONSULTAR_NOME_SIMILAR = "RecursoNTIC.findByLikeNome";
+    private static final String CONSULTAR_COUNT_NOME_SIMILAR = "RecursoNTIC.findByCountLikeNome";
+    private static final String CONSULTAR_CODIGO_TIPO = "RecursoNTIC.findByCodTipoRecurso";
+    private static final String CONSULTAR_CODIGO_STATUS = "RecursoNTIC.findByCodStatusRecurso";
+
     
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void inserir(StatusRecurso status) throws NegocioException {
+    public void inserir(RecursoNTIC recurso) throws NegocioException {
 
-        entityManager.persist(status);
+        entityManager.persist(recurso);
         entityManager.flush();
 
         // auditoria
         IAuditoriaDAO auditoriaDao = new AuditoriaDAO();
-        auditoriaDao.gravarAuditoria(status, AuditoriaTipoTransacao.INCLUSAO,
+        auditoriaDao.gravarAuditoria(recurso, AuditoriaTipoTransacao.INCLUSAO,
                 entityManager);
     }
 
-    public StatusRecurso atualizar(StatusRecurso status) throws NegocioException {
-        entityManager.merge(status);
+    public RecursoNTIC atualizar(RecursoNTIC recurso) throws NegocioException {
+        entityManager.merge(recurso);
         entityManager.flush();
 
         // auditoria
         IAuditoriaDAO auditoriaDao = new AuditoriaDAO();
-        auditoriaDao.gravarAuditoria(status, AuditoriaTipoTransacao.EDICAO,
+        auditoriaDao.gravarAuditoria(recurso, AuditoriaTipoTransacao.EDICAO,
                 entityManager);
 
-        return status;
+        return recurso;
     }
 
-    public void remover(StatusRecurso status) {
-        entityManager.remove(entityManager.getReference(StatusRecurso.class, status
-                .getCodStatRecurso()));
+    public void remover(RecursoNTIC recurso) {
+        entityManager.remove(entityManager.getReference(RecursoNTIC.class, recurso
+                .getIdRecursoNTIC()));
 
         // auditoria
         IAuditoriaDAO auditoriaDao = new AuditoriaDAO();
-        auditoriaDao.gravarAuditoria(status, AuditoriaTipoTransacao.REMOCAO,
+        auditoriaDao.gravarAuditoria(recurso, AuditoriaTipoTransacao.REMOCAO,
                 entityManager);
 
     }
 
-    public StatusRecurso consultar(long id) {
+    public RecursoNTIC consultar(long id) {
 
-        return this.entityManager.find(StatusRecurso.class, id);
+        return this.entityManager.find(RecursoNTIC.class, id);
 
     }
 
     @SuppressWarnings("unchecked")
-    public List<StatusRecurso> buscar() {
-        Query query = entityManager.createNamedQuery(StatusRecursoDAO.LISTAR_STATUS_RECURSO);
-        List<StatusRecurso> titulacoes = query.getResultList();
+    public List<RecursoNTIC> buscar() {
+        Query query = entityManager.createNamedQuery(RecursoNTICDAO.LISTAR_RECURSO);
+        List<RecursoNTIC> titulacoes = query.getResultList();
         return titulacoes;
     }
 
     @SuppressWarnings("unchecked")
-    public List<StatusRecurso> consultar(StatusRecurso status) {
+    public List<RecursoNTIC> consultar(RecursoNTIC recurso) {
 
         Query query = this.entityManager
-                .createNamedQuery(StatusRecursoDAO.CONSULTAR_NOME);
-        query.setParameter("nome", status.getNomeStatRecurso().toUpperCase());
+                .createNamedQuery(RecursoNTICDAO.CONSULTAR_NOME);
+        query.setParameter("nome", recurso.getNomeStatRecurso().toUpperCase());
                 
-        return (List<StatusRecurso>) query.getResultList();
+        return (List<RecursoNTIC>) query.getResultList();
 
     }
     
     @SuppressWarnings("unchecked")
-    public List<StatusRecurso> buscar(StatusRecurso status, int pagina,
+    public List<RecursoNTIC> buscar(RecursoNTIC recurso, int pagina,
             int rows) {        
         
         StringBuilder param = new StringBuilder();
         
-        if(!status.getNomeStatRecurso().isEmpty()){
-            param.append("upper(sr.nome) like '%"
-                    + status.getNomeStatRecurso().toUpperCase() + "%'");
+        if(!recurso.getNomeRecursoNTIC().isEmpty()){
+            param.append("upper(r.nome) like '%"
+                    + recurso.getNomeRecursoNTIC().toUpperCase() + "%'");
         }       
         
-        String consulta = "SELECT sr FROM StatusRecurso sr ";
+        String consulta = "SELECT r FROM RecursoNTIC r ";
         // consulta para contagem do numero de registros total da tabela, usado
         // na paginacao
-        String consultaNumRegistros = "SELECT COUNT(sr) FROM StatusRecurso sr ";
+        String consultaNumRegistros = "SELECT COUNT(r) FROM RecursoNTIC r ";
 
         if (param.length() > 0) {
             consulta = consulta + "WHERE :parametrosParaBusca";
@@ -114,7 +118,7 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
                     ":parametrosParaBusca", param.toString());
         }
         
-        consulta += " ORDER BY sr.nomeStatRecurso ";
+        consulta += " ORDER BY r.nomeStatRecurso ";
 
         // corresposde ao numero total de registros na tabela
         Long numTotalRegistros = (Long) entityManager.createQuery(
@@ -124,7 +128,7 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
 
         // numRows corresponde ao numero de registros por pagina, vem do MB
         // pagina corresponde a pagina corrente que o usuário está
-        List<StatusRecurso> lista = query.setFirstResult(
+        List<RecursoNTIC> lista = query.setFirstResult(
                 LazyList.getIndicePrimeiroRegistro(pagina, rows))
                 .setMaxResults(rows).getResultList();
 

@@ -11,8 +11,8 @@ import br.cefetmg.sinapse.aaa.nucleo.dao.IAuditoriaDAO;
 import br.cefetmg.sinapse.aaa.nucleo.dao.jpa.AuditoriaDAO;
 import br.cefetmg.sinapse.aaa.nucleo.dominio.AuditoriaTipoTransacao;
 
-import br.cefetmg.sinapse.ntic.nucleo.dominio.dao.IStatusRecursoDAO;
-import br.cefetmg.sinapse.ntic.nucleo.dominio.StatusRecurso;
+import br.cefetmg.sinapse.ntic.nucleo.dominio.dao.IStatusPedReservaDAO;
+import br.cefetmg.sinapse.ntic.nucleo.dominio.StatusPedReserva;
 
 import br.cefetmg.sinapse.nucleo.exception.NegocioException;
 import br.cefetmg.sinapse.nucleo.util.LazyList;
@@ -20,17 +20,17 @@ import br.cefetmg.sinapse.nucleo.util.LazyList;
 
 
 @Stateless
-public class StatusRecursoDAO implements IStatusRecursoDAO {
+public class StatusPedReservaDAO implements IStatusPedReservaDAO {
 
-    private static final String LISTAR_STATUS_RECURSO = "StatusRecurso.findAll";
-    private static final String CONSULTAR_ID = "StatusRecurso.findById";
-    private static final String CONSULTAR_NOME = "StatusRecurso.findByLikeNome";
+    private static final String LISTAR_STATUS_PEDRESERVA = "StatusPedReserva.findAll";
+    private static final String CONSULTAR_ID = "StatusPedReserva.findById";
+    private static final String CONSULTAR_NOME = "StatusPedReserva.findByLikeNome";
     
     
     @PersistenceContext
     private EntityManager entityManager;
 
-    public void inserir(StatusRecurso status) throws NegocioException {
+    public void inserir(StatusPedReserva status) throws NegocioException {
 
         entityManager.persist(status);
         entityManager.flush();
@@ -41,7 +41,7 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
                 entityManager);
     }
 
-    public StatusRecurso atualizar(StatusRecurso status) throws NegocioException {
+    public StatusPedReserva atualizar(StatusPedReserva status) throws NegocioException {
         entityManager.merge(status);
         entityManager.flush();
 
@@ -53,9 +53,9 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
         return status;
     }
 
-    public void remover(StatusRecurso status) {
-        entityManager.remove(entityManager.getReference(StatusRecurso.class, status
-                .getCodStatRecurso()));
+    public void remover(StatusPedReserva status) {
+        entityManager.remove(entityManager.getReference(StatusPedReserva.class, status
+                .getCodStatPedReserva()));
 
         // auditoria
         IAuditoriaDAO auditoriaDao = new AuditoriaDAO();
@@ -64,45 +64,45 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
 
     }
 
-    public StatusRecurso consultar(long id) {
+    public StatusPedReserva consultar(long id) {
 
-        return this.entityManager.find(StatusRecurso.class, id);
+        return this.entityManager.find(StatusPedReserva.class, id);
 
     }
 
     @SuppressWarnings("unchecked")
-    public List<StatusRecurso> buscar() {
-        Query query = entityManager.createNamedQuery(StatusRecursoDAO.LISTAR_STATUS_RECURSO);
-        List<StatusRecurso> titulacoes = query.getResultList();
+    public List<StatusPedReserva> buscar() {
+        Query query = entityManager.createNamedQuery(StatusPedReservaDAO.LISTAR_STATUS_PEDRESERVA);
+        List<StatusPedReserva> titulacoes = query.getResultList();
         return titulacoes;
     }
 
     @SuppressWarnings("unchecked")
-    public List<StatusRecurso> consultar(StatusRecurso status) {
+    public List<StatusPedReserva> consultar(StatusPedReserva status) {
 
         Query query = this.entityManager
-                .createNamedQuery(StatusRecursoDAO.CONSULTAR_NOME);
-        query.setParameter("nome", status.getNomeStatRecurso().toUpperCase());
+                .createNamedQuery(StatusPedReservaDAO.CONSULTAR_NOME);
+        query.setParameter("nome", status.getNomeStatPedReserva().toUpperCase());
                 
-        return (List<StatusRecurso>) query.getResultList();
+        return (List<StatusPedReserva>) query.getResultList();
 
     }
     
     @SuppressWarnings("unchecked")
-    public List<StatusRecurso> buscar(StatusRecurso status, int pagina,
+    public List<StatusPedReserva> buscar(StatusPedReserva status, int pagina,
             int rows) {        
         
         StringBuilder param = new StringBuilder();
         
-        if(!status.getNomeStatRecurso().isEmpty()){
-            param.append("upper(sr.nome) like '%"
-                    + status.getNomeStatRecurso().toUpperCase() + "%'");
+        if(!status.getNomeStatPedReserva().isEmpty()){
+            param.append("upper(spr.nome) like '%"
+                    + status.getNomeStatPedReserva().toUpperCase() + "%'");
         }       
         
-        String consulta = "SELECT sr FROM StatusRecurso sr ";
+        String consulta = "SELECT spr FROM StatusPedReserva spr ";
         // consulta para contagem do numero de registros total da tabela, usado
         // na paginacao
-        String consultaNumRegistros = "SELECT COUNT(sr) FROM StatusRecurso sr ";
+        String consultaNumRegistros = "SELECT COUNT(spr) FROM StatusPedReserva spr ";
 
         if (param.length() > 0) {
             consulta = consulta + "WHERE :parametrosParaBusca";
@@ -114,7 +114,7 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
                     ":parametrosParaBusca", param.toString());
         }
         
-        consulta += " ORDER BY sr.nomeStatRecurso ";
+        consulta += " ORDER BY spr.nomeStatPedReserva ";
 
         // corresposde ao numero total de registros na tabela
         Long numTotalRegistros = (Long) entityManager.createQuery(
@@ -124,7 +124,7 @@ public class StatusRecursoDAO implements IStatusRecursoDAO {
 
         // numRows corresponde ao numero de registros por pagina, vem do MB
         // pagina corresponde a pagina corrente que o usuário está
-        List<StatusRecurso> lista = query.setFirstResult(
+        List<StatusPedReserva> lista = query.setFirstResult(
                 LazyList.getIndicePrimeiroRegistro(pagina, rows))
                 .setMaxResults(rows).getResultList();
 
